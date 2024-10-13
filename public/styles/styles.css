@@ -1,3 +1,7 @@
+:root {
+    --primary-color: #D93900;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -16,6 +20,7 @@ header {
     display: flex;
     justify-content: space-between;
     padding: 2rem 1rem;
+    border-bottom: 1px solid gray;
 }
 
 .search-container {
@@ -49,7 +54,7 @@ header button {
     border-radius: 50px;
     border: 0;
     color: #ffffff;
-    background-color: #D93900;
+    background-color: var(--primary-color);
     padding: 0 1.5rem;
     cursor: pointer;
 }
