@@ -12,6 +12,12 @@ class Route extends Bootstrap {
             'action' => 'index',
         );
 
+        $routes['access'] = array(
+            'route' => '/acessar',
+            'controller' => 'indexController',
+            'action' => 'access',
+        );
+
         $this->setRoutes($routes);
     }
 }

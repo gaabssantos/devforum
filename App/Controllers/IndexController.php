@@ -9,6 +9,10 @@ class IndexController extends Action {
     public function index() {
         $this->render('index');
     }
+
+    public function access() {
+        $this->render('access');
+    }
 }
 
 ?>
