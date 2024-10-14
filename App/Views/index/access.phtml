@@ -5,13 +5,33 @@
     <body>
         <div class="container">
             <main>
-                <h2>Login</h2>
+                <h2>
+                <?php if (isset($_GET['login'])) { 
+                    echo "Login";
+                } else {
+                    echo "Registrar";
+                } ?></h2>
                 <p>Ao continuar, você aceita com os termos e condições.</p>
                 <form action="" method="post">
-                    <input type="email" placeholder="E-mail ou usuário">
-                    <input type="text" placeholder="Senha">
-                    <span>Novo? <a href="#">Se inscreva</a></span>
-                    <button>Logar</button>
+                    <?php if (isset($_GET['login'])) { ?>
+                        <input type="email" placeholder="E-mail ou usuário" name="login-email">
+                        <input type="password" placeholder="Senha" name="login-password">
+                        <span>Novo? <a href="/acessar?register">Se inscreva</a></span>
+                    <?php } else { ?>
+                        <input type="email" placeholder="E-mail ou usuário" name="email">
+                        <input type="password" placeholder="Senha" name="password">
+                        <input type="password" placeholder="Confirmar a senha" name="password">
+                        <span>Já tem uma conta? <a href="/acessar?login">Logar</a></span>
+                    <?php } ?>
+                    
+                    <button>
+                        <?php 
+                        if (isset($_GET['login'])) { 
+                            echo "Login"; 
+                        } else { 
+                            echo "Registrar"; 
+                        } ?>
+                    </button>
                 </form>
             </main>
         </div>
