@@ -4,6 +4,25 @@
 </head>
     <body>
         <div class="container">
+            <?php if (isset($_GET['register']) && isset($_GET['success'])) { ?>
+                <div class="box success-box">
+                    <p>Você se registrou com sucesso, agora você pode logar.</p>
+                </div>
+            <?php } else if (
+                isset($_GET['register']) && 
+                isset($_GET['error']) && 
+                $_GET['error'] == 'email_exists') { ?>
+                    <div class="box error-box">
+                        <p>Este e-mail já existe, tente utilizar outro.</p>
+                    </div>
+            <?php } else if (
+                isset($_GET['register']) && 
+                isset($_GET['error']) &&
+                $_GET['error'] == 'password_not_match') { ?>
+                    <div class="box error-box">
+                        <p>As senhas não coincidem.</p>
+                    </div>
+            <?php } ?>
             <main>
                 <h2>
                 <?php if (isset($_GET['login'])) { 
@@ -12,7 +31,7 @@
                     echo "Registrar";
                 } ?></h2>
                 <p>Ao continuar, você aceita com os termos e condições.</p>
-                <form action="" method="post">
+                <form action="/register" method="post">
                     <?php if (isset($_GET['login'])) { ?>
                         <input type="email" placeholder="E-mail ou usuário" name="login-email">
                         <input type="password" placeholder="Senha" name="login-password">
@@ -20,7 +39,7 @@
                     <?php } else { ?>
                         <input type="email" placeholder="E-mail ou usuário" name="email">
                         <input type="password" placeholder="Senha" name="password">
-                        <input type="password" placeholder="Confirmar a senha" name="password">
+                        <input type="password" placeholder="Confirmar a senha" name="confirmPassword">
                         <span>Já tem uma conta? <a href="/acessar?login">Logar</a></span>
                     <?php } ?>
                     
