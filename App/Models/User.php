@@ -20,10 +20,9 @@ class User extends Model {
     }
 
     function userExists() {
-        $query = "select * from tb_users where email = ? and password = ?";
+        $query = "select * from tb_users where email = ?";
         $stmt = $this->db->prepare($query);
         $stmt->bindValue(1, $this->__get('email'));
-        $stmt->bindValue(2, $this->__get('password'));
         $stmt->execute();
 
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
@@ -45,6 +44,16 @@ class User extends Model {
         $stmt->execute();
 
         return $this;
+    }
+
+    public function findUserAccount() {
+        $query = "select * from tb_users where email = ? and password = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindValue(1, $this->__get('email'));
+        $stmt->bindValue(2, md5($this->__get('password')));
+        $stmt->execute();
+
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 }
 

@@ -32,6 +32,30 @@ class IndexController extends Action {
             header('Location: /acessar?register&error=password_not_match');
         }
     }
+
+    public function login() {
+        $user = Container::getModel('User');
+
+        $user->__set('email', $_POST['login-email']);
+        $user->__set('password', $_POST['login-password']);
+
+        if ($user->findUserAccount()) {
+            header('Location: /acessar?login&success');
+
+            session_start();
+            $_SESSION['email'] = $user->__get('email');
+        } else {
+            header('Location: /acessar?login&error=user_not_exists');
+        }
+    }
+
+    public function logout() {
+        session_start();
+        session_unset();
+        session_destroy();
+
+        header("Location: /");
+    }
 }
 
 ?>
