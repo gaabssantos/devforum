@@ -36,6 +36,12 @@ class Route extends Bootstrap {
             'action' => 'logout',
         );
 
+        $routes['community'] = array(
+            'route' => '/community',
+            'controller' => 'appController',
+            'action' => 'community',
+        );
+
         $this->setRoutes($routes);
     }
 }
