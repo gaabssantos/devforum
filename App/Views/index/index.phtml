@@ -1,3 +1,12 @@
+<?php
+
+use MF\Controller\Action;
+use MF\Model\Container;
+
+$community = Container::getModel('Community');
+
+?>
+
 <!DOCTYPE html>
 <head>
     <link rel="stylesheet" href="/styles/index.css">
@@ -14,9 +23,61 @@
                 </ul>
             </aside>
             <main>
-                <h2>Oops... Parece que não existe nenhuma comunidade encontrada.</h2>
-                <button class="btn-create">Criar uma comunidade</button>
+                <?php if (isset($_GET['success']) && $_GET['success'] == 'community') { ?>
+                    <div class="sucess-community">
+                        <p>Comunidade criada com sucesso.</p>
+                    </div>
+                <?php } else if (isset($_GET['error']) && $_GET['error'] == 'community_already_exists') {?>
+                    <div class="error-community">
+                        <p>Este nome já existe.</p>
+                    </div>
+                <?php } ?>
+                <?php if (count($community->getAllCommunities()) == 0) { ?>
+                    <h2>Oops... Parece que não existe nenhuma comunidade encontrada.</h2>
+                    <button class="btn-create">Criar uma comunidade</button>
+                <?php } else { ?>
+                    <?php foreach ($community->getAllCommunities() as $key => $value) { ?>
+                        <div class="community">
+                            <?= $value['name'] ?>
+                        </div>
+                    <?php } ?>
+                <?php } ?>
+
+                <div class="model-container hide">
+                    <div class="model-box">
+                        <h2>Criação de comunidade</h2>
+                        <form action="/community" method="post">
+                            <input type="text" placeholder="Digite o nome da comunidade" name="community_name">
+                            <button>Criar comunidade</button>
+                        </form>
+                    </div>
+                </div>
             </main>
         </div>
+
+        <script>
+            const model = document.querySelector(".model-container");
+            const modelBox = document.querySelector(".model-box");
+            const btnAddCommunity = document.querySelectorAll(".btn-create");
+            const input = document.getElementsByName("community_name");
+
+            btnAddCommunity.forEach((btnCreate) => {
+                    btnCreate.addEventListener("click", () => {
+                    model.classList.remove("hide");
+                    input[0].focus();
+                })
+            })
+
+            model.addEventListener("click", (event) => {
+                if (event.target === model) {
+                    model.classList.add("hide");
+                }
+            })
+
+            modelBox.addEventListener("click", (event) => {
+                event.stopPropagation();
+            })
+        </script>
+
     </body>
 </html>

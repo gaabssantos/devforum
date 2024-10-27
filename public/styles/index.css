@@ -48,8 +48,69 @@ main {
     padding: 2rem;
     text-align: center;
     margin: 0 auto;
+    width: 50vw;
 }
 
 main button {
     margin-top: 2rem;
+}
+
+/* MODEL */
+
+.hide {
+    display: none;
+}
+
+.model-container {
+    background: #00000041;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+.model-box {
+    background-color: #ffffff;
+    color: #000000;
+    width: 30%;
+    margin: 0 auto;
+    position: relative;
+    top: 30%;
+    padding: 2rem;
+    border-radius: 10px;
+}
+
+.model-box input {
+    padding: 0.5rem;
+    width: 90%;
+    margin-top: 2rem;
+}
+
+.model-box button {
+    padding: 1rem;
+    border-radius: 5px;
+}
+
+.sucess-community {
+    border: 1px solid green;
+    padding: 1rem;
+    border-radius: 5px;
+    margin: 2rem 0;
+}
+
+.error-community {
+    border: 1px solid red;
+    padding: 1rem;
+    border-radius: 5px;
+    margin: 2rem 0;
+}
+
+.community {
+    border: 1px solid #ffffff;
+    border-radius: 10px;
+    width: 100%;
+    padding: 1rem;
+    margin: 2rem 0;
+    cursor: pointer;
 }

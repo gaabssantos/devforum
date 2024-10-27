@@ -9,9 +9,9 @@ class AppController extends Action {
     public function community() {
         $community = Container::getModel('Community');
 
-        $community->__set('name', $_POST['name']);
+        $community->__set('name', $_POST['community_name']);
 
-        if (!$community->communityExists) {
+        if (!$community->communityExists()) {
             $community->save();
             header('Location: /?success=community');
         } else {

@@ -32,6 +32,14 @@ class Community extends Model {
         $stmt->bindValue(1, $this->__get('name'));
         $stmt->execute();
     }
+
+    public function getAllCommunities() {
+        $query = "select name from tb_communities";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
+
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
 }
 
 ?>
